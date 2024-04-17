@@ -1,9 +1,31 @@
 import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
+import ColorContext from '../contexts/ColorContext';
 
 class Button extends React.Component {
   renderSubmit(value) {
     return value === 'english' ? 'Submit' : 'पेश गर्नुहोस्';
+  }
+
+  renderButton(color) {
+    return (
+      <button className={`ui button ${color}`}>
+        {/* * Here we're providing a function as a child to a React component. 
+      That component is going to take that child function and automatically 
+      invoke it for us.
+      So this value right here is going to be whatever value is currently 
+      inside of the pipe. So inside of this function alone, only inside of this
+      function, can we get access to that value and use it to decide what we 
+      want to print out */}
+        {/* So again, anytime we make use of a consumer to get a value out of that
+      pipe or that context object, we're gonna pass in a single function as a child.
+      That child will be called with whatever value is inside of our pipe. So
+      we can implement some logic inside of here. */}
+        <LanguageContext.Consumer>
+          {(value) => this.renderSubmit(value)}
+        </LanguageContext.Consumer>
+      </button>
+    );
   }
 
   render() {
@@ -22,22 +44,9 @@ class Button extends React.Component {
      *
      */
     return (
-      <button className='ui button primary'>
-        {/* * Here we're providing a function as a child to a React component. 
-      That component is going to take that child function and automatically 
-      invoke it for us.
-      So this value right here is going to be whatever value is currently 
-      inside of the pipe. So inside of this function alone, only inside of this
-      function, can we get access to that value and use it to decide what we 
-      want to print out */}
-        {/* So again, anytime we make use of a consumer to get a value out of that
-      pipe or that context object, we're gonna pass in a single function as a child.
-      That child will be called with whatever value is inside of our pipe. So
-      we can implement some logic inside of here. */}
-        <LanguageContext.Consumer>
-          {(value) => this.renderSubmit(value)}
-        </LanguageContext.Consumer>
-      </button>
+      <ColorContext.Consumer>
+        {(color) => this.renderButton(color)}
+      </ColorContext.Consumer>
     );
   }
 }

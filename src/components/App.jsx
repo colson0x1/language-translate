@@ -1,6 +1,7 @@
 import React from 'react';
 import UserCreate from './UserCreate';
 import LanguageContext from '../contexts/LanguageContext';
+import ColorContext from '../contexts/ColorContext';
 
 /* Context
  * Two ways to get information in to the context object: (Source of data)
@@ -47,9 +48,11 @@ class App extends React.Component {
         conveys information from that parent component down to those remote children*/}
 
         {/* Only this first one sees that update */}
-        <LanguageContext.Provider value={this.state.language}>
-          <UserCreate />
-        </LanguageContext.Provider>
+        <ColorContext.Provider value='orange'>
+          <LanguageContext.Provider value={this.state.language}>
+            <UserCreate />
+          </LanguageContext.Provider>
+        </ColorContext.Provider>
 
         {/* This second one gets its value from a fixed provider that always has `nepali`  */}
         {/* <LanguageContext.Provider value='nepali'>
