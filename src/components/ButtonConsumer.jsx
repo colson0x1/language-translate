@@ -2,9 +2,17 @@ import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
 import ColorContext from '../contexts/ColorContext';
 
+// We can see that we had wired up LanguageContext in here.
+// We used the LanguageContext consumer.
 class Button extends React.Component {
-  renderSubmit(value) {
-    return value === 'english' ? 'Submit' : 'पेश गर्नुहोस्';
+  // Just for completion shake, we really should carry the same terminology of
+  // language all the way through these arguments up here to
+  // `renderSubmit`. It doesn't make a difference. It's just a good practice
+  // to have the very same terminology being passed all around the same component.
+  // So changing `value` to `language` on renderSubmit
+  // That is not required, it is just good practice.
+  renderSubmit(language) {
+    return language === 'english' ? 'Submit' : 'पेश गर्नुहोस्';
   }
 
   renderButton(color) {
@@ -21,8 +29,16 @@ class Button extends React.Component {
       pipe or that context object, we're gonna pass in a single function as a child.
       That child will be called with whatever value is inside of our pipe. So
       we can implement some logic inside of here. */}
+
+        {/*
+        We used the LanguageContext consumer.
+        So in this case we're still taking in the value which is the current value
+        inside of our Context Object or that kind of piep of sorts.
+        So once again, this previously was a simple string. Now it is an object instead.
+        So we can destructure out the language property 
+        */}
         <LanguageContext.Consumer>
-          {(value) => this.renderSubmit(value)}
+          {({ language }) => this.renderSubmit(language)}
         </LanguageContext.Consumer>
       </button>
     );
