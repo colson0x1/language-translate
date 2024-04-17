@@ -54,6 +54,9 @@ class App extends React.Component {
 
           {/* Only this first one sees that update */}
           <ColorContext.Provider value='orange'>
+            {/* NOTE: It's not actually UserCreate that needs to access data or
+            change data. It is the Components nested inside of UserCreate
+            that needs to. */}
             <UserCreate />
           </ColorContext.Provider>
 
