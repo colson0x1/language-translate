@@ -12,6 +12,8 @@ import LanguageContext from '../contexts/LanguageContext';
  * creating a component called a Consumer inside of the nested child.
  */
 
+// The Consumer is automatically created for us when we create a new context object
+
 class App extends React.Component {
   state = { language: 'english' };
 
@@ -50,13 +52,13 @@ class App extends React.Component {
         </LanguageContext.Provider>
 
         {/* This second one gets its value from a fixed provider that always has `nepali`  */}
-        <LanguageContext.Provider value='nepali'>
+        {/* <LanguageContext.Provider value='nepali'>
           <UserCreate />
-        </LanguageContext.Provider>
+        </LanguageContext.Provider> */}
 
         {/* The last one gets its value from the default value from that context object
         that we set to english */}
-        <UserCreate />
+        {/* <UserCreate /> */}
       </div>
     );
   }
