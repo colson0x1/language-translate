@@ -2,6 +2,7 @@ import React from 'react';
 import UserCreate from './UserCreate';
 import LanguageContext from '../contexts/LanguageContext';
 import ColorContext from '../contexts/ColorContext';
+import LanguageSelector from './LanguageSelector';
 
 /* Context
  * Two ways to get information in to the context object: (Source of data)
@@ -25,17 +26,8 @@ class App extends React.Component {
   render() {
     return (
       <div className='ui container'>
-        <div>
-          <h2>Select a language:</h2>
-          <i
-            className='flag us'
-            onClick={() => this.onLanguageChange('english')}
-          />
-          <i
-            className='flag np'
-            onClick={() => this.onLanguageChange('nepali')}
-          />
-        </div>
+        <LanguageSelector onLanguageChange={this.onLanguageChange} />
+
         {/* Communication some information from our App Component to the 
         Context Object */}
 
